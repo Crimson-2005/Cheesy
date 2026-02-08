@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cheesy Birthday Surprise 🧀</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- CONFETTI -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+</head>
+
+<body>
+
+<!-- BACKGROUND MUSIC -->
+<audio id="bgm" loop>
+ <source src="birthday.mp3" type="audio/mp3">
+</audio>
+
+<!-- LOADING SCREEN -->
+<div id="loading">
+  <h1>Surprise Loading...</h1>
+  <p id="intro-timer">5</p>
+  <button id="revealBtn" class="hidden" onclick="revealSurprise()">Click for your Surprise 🎁</button>
+</div>
+
+<!-- BATS -->
+<div id="bats"></div>
+
+<!-- MAIN CONTENT -->
+<div id="main" class="hidden">
+  <h1>Happy Birthday, Mozarella Cheese!!! 🧀🦇</h1>
+<p>
+Happy Birthday, Aman !! 🦇🧀<br><br>
+
+Aap ekdum badhiya insaan ho yaarr..
+thoda dramatic, thoda pagal, lekin full on hero energy dene waale 😭✨<br><br>
+
+So aap jaise log ke efforts daalna toh justified hai..<br>
+Lekin hotwheels ka budget to mere paas nahi hai,<br>
+Isliye free mein aapko ek cheesy sa gift de rahi hoon 💛<br><br>
+
+Baaki...aise hi haste rehna aur sabko hasaate rehnaa.<br>
+Enjoyy your dayy!!! 🧀
+ 
+ </p>
+
+  <button onclick="showCheesySurprise()">Click for another cheesy surprise 😈</button>
+
+  <!-- GAME -->
+  <div id="gameContainer" class="hidden">
+    <h2>Catch The Cheese 🧀</h2>
+    <p>Score: <span id="score">0</span></p>
+    <div id="timerBox">⏳ Time Left: <span id="gameTimer">20</span>s</div>
+
+    <button onclick="startGame()">Start Game</button>
+    <div id="gameArea"></div>
+  </div>
+</div>
+
+<!-- SECRET PAGE -->
+<div id="secret" class="secret">
+  <h1>🎉 SECRET UNLOCKED 🎉</h1>
+
+<p> Secret surprise mil gaya? Smart guy !! <br><br>
+Magar ladlee…<br>
+MEOWWWWWWWWW 😼<br>
+GHOP GHOP GHOP GHOP <br><br>
+Maza aayaa??<br>
+Once again.. Happy Birthday Yaar!!<br>
+Party dede ab. 💛 </p>
+
+<button onclick="showCertificate()">Download Your Certificate 🧾</button>
+
+  <button onclick="closeSecret()">Close Secret Mode</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

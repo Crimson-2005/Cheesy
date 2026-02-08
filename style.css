@@ -1,0 +1,223 @@
+/* BODY */
+body {
+  margin: 0;
+  font-family: Arial;
+  text-align: center;
+  color: white;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: linear-gradient(120deg,#050015,#12002b,#1b0038,#050015);
+  background-size: 400% 400%;
+  animation: gradientMove 40s infinite;
+}
+
+@keyframes gradientMove {
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+
+/* STARS */
+body::before {
+  content:"";
+  position:fixed;
+  inset:0;
+  box-shadow:
+    50px 100px white,150px 200px white,300px 50px white,
+    400px 300px white,600px 200px white,700px 400px white,
+    900px 100px white,1100px 300px white;
+  animation:twinkle 3s infinite alternate;
+  pointer-events:none;
+}
+
+@keyframes twinkle {
+  from{opacity:.3;}
+  to{opacity:1;}
+}
+
+/* LOADING SCREEN */
+#loading {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(135deg, #050015, #12002b, #1b0038);
+  background-size: 400% 400%;
+  animation: introGradient 20s ease infinite;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  color: white;
+}
+
+@keyframes introGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+#loading h1 {
+  font-size: 3rem;
+  color: #00fff7;
+  text-shadow: 0 0 10px #00fff7, 0 0 30px #00b3ff;
+  animation: glowPulse 2s infinite alternate;
+}
+
+
+/* COUNTDOWN STYLE */
+#intro-timer {
+  font-size:5rem;
+  font-weight:bold;
+  color:#00fff7;
+  text-shadow:0 0 10px #00fff7,0 0 30px #00b3ff;
+  animation:pulseTimer 1s infinite;
+}
+
+@keyframes pulseTimer {
+  0%{transform:scale(1);}
+  50%{transform:scale(1.2);}
+  100%{transform:scale(1);}
+}
+
+.hidden { display:none; }
+
+/* MAIN TRANSITION */
+#main {
+  opacity:0;
+  transform:scale(0.95);
+  transition:1.5s ease;
+}
+#main.show {
+  opacity:1;
+  transform:scale(1);
+}
+
+/* HEADINGS */
+h1 {
+  font-size:3rem;
+  color:#00fff7;
+  text-shadow:0 0 10px #00fff7,0 0 40px #00b3ff;
+}
+
+h2 {
+  color:gold;
+  text-shadow:0 0 10px gold;
+}
+
+/* NEON BUTTON */
+button {
+  padding:14px 30px;
+  font-size:18px;
+  background:black;
+  color:#00fff7;
+  border:2px solid #00fff7;
+  border-radius:12px;
+  box-shadow:0 0 10px #00fff7;
+  cursor:pointer;
+  margin:10px;
+  transition:.3s;
+}
+button:hover {
+  background:#00fff7;
+  color:black;
+  box-shadow:0 0 25px #00fff7,0 0 50px #00b3ff;
+  transform:scale(1.1);
+}
+
+/* BATS */
+#bats { position:fixed; inset:0; pointer-events:none; }
+
+.bat {
+  width:40px;
+  height:20px;
+  background:white;
+  clip-path:polygon(50% 0%,60% 20%,80% 10%,100% 30%,80% 50%,60% 40%,50% 60%,40% 40%,20% 50%,0% 30%,20% 10%,40% 20%);
+  position:absolute;
+  opacity:.6;
+  animation:flap .6s infinite alternate;
+}
+
+@keyframes flap {
+  from{transform:scaleX(1);}
+  to{transform:scaleX(.6);}
+}
+
+p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+/* GAME */
+#gameArea {
+  width:90%;
+  height:300px;
+  border:2px dashed gold;
+  margin:auto;
+  border-radius:20px;
+  position:relative;
+  overflow:hidden;
+}
+
+.cheese {
+  position:absolute;
+  font-size:30px;
+  cursor:pointer;
+  animation:fall 4s linear forwards;
+}
+
+@keyframes fall {
+  from{top:-40px;}
+  to{top:320px;}
+}
+
+/* TIMER */
+#timerBox {
+  font-size:22px;
+  color:#00ffea;
+  text-shadow:0 0 10px #00ffea;
+  font-weight:bold;
+  margin:10px;
+}
+
+/* SECRET PAGE */
+.secret {
+  position:fixed;
+  inset:0;
+  background:radial-gradient(circle,#1a002b,#000);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  font-size:1.6rem;
+  color:#00ffea;
+  font-family:"Comic Sans MS",cursive;
+  opacity:0;
+  pointer-events:none;
+  transition:1s ease;
+  z-index:9999;
+  overflow-y:auto;
+}
+
+.secret.show-secret {
+  opacity:1;
+  pointer-events:auto;
+  animation:secretPop 1s forwards;
+}
+
+@keyframes secretPop {
+  0%{transform:scale(.2) rotate(-10deg);}
+  60%{transform:scale(1.1) rotate(5deg);}
+  100%{transform:scale(1);}
+}
+
+.secret h1 {
+  color:gold;
+  text-shadow:0 0 10px gold,0 0 30px yellow;
+}
+
+.secret p {
+  max-width:700px;
+  font-size:1.4rem;
+}
