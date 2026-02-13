@@ -6,17 +6,20 @@ let revealBtn = document.getElementById("revealBtn");
 let timer = setInterval(() => {
   time--;
   timerEl.innerText = time;
-
   if (time <= 0) {
     clearInterval(timer);
     revealBtn.classList.remove("hidden");
   }
 }, 1000);
 
+// AUDIO ELEMENTS
+const birthdayBgm = document.getElementById("birthdayBgm");
+const batmanBgm = document.getElementById("batmanBgm");
+const meowSfx = document.getElementById("meowSfx");
+
 // FIRST SURPRISE
 function revealSurprise() {
   document.getElementById("loading").style.display = "none";
-
   const main = document.getElementById("main");
   main.classList.remove("hidden");
   setTimeout(() => main.classList.add("show"), 100);
@@ -25,57 +28,43 @@ function revealSurprise() {
   fadeInMusic();
 }
 
+// MUSIC FADE IN
+function fadeInMusic() {
+  birthdayBgm.volume = 0;
+  birthdayBgm.play();
+  let v = 0;
+  let fade = setInterval(() => {
+    if (v < 0.4) { v += 0.01; birthdayBgm.volume = v; } 
+    else clearInterval(fade);
+  }, 150);
+}
+
 // SECOND SURPRISE (GAME)
 function showCheesySurprise() {
   document.getElementById("gameContainer").classList.remove("hidden");
 }
 
-// BATS ANIMATION
+// BATS
 function spawnBats() {
   const container = document.getElementById("bats");
-
-  for (let i = 0; i < 10; i++) {
-    let bat = document.createElement("div");
-    bat.className = "bat";
+  for (let i=0;i<10;i++){
+    let bat=document.createElement("div");
+    bat.className="bat";
     container.appendChild(bat);
-
-    let x = Math.random() * window.innerWidth;
-    let y = Math.random() * window.innerHeight;
-    let sx = (Math.random() - 0.5) * 2;
-    let sy = (Math.random() - 0.5) * 2;
-
-    function move() {
-      x += sx;
-      y += sy;
-
-      if (x < 0 || x > innerWidth) sx *= -1;
-      if (y < 0 || y > innerHeight) sy *= -1;
-
-      bat.style.left = x + "px";
-      bat.style.top = y + "px";
-
+    let x=Math.random()*window.innerWidth;
+    let y=Math.random()*window.innerHeight;
+    let sx=(Math.random()-0.5)*2;
+    let sy=(Math.random()-0.5)*2;
+    function move(){
+      x+=sx;y+=sy;
+      if(x<0||x>innerWidth)sx*=-1;
+      if(y<0||y>innerHeight)sy*=-1;
+      bat.style.left=x+"px";
+      bat.style.top=y+"px";
       requestAnimationFrame(move);
     }
-
     move();
   }
-}
-
-// MUSIC FADE IN
-function fadeInMusic() {
-  const music = document.getElementById("bgm");
-  music.volume = 0;
-  music.play();
-
-  let v = 0;
-  let fade = setInterval(() => {
-    if (v < 0.4) {
-      v += 0.01;
-      music.volume = v;
-    } else {
-      clearInterval(fade);
-    }
-  }, 150);
 }
 
 // GAME LOGIC
@@ -83,9 +72,12 @@ let score = 0;
 let gameInterval;
 
 function startGame() {
+  // Stop birthday, start batman
+  birthdayBgm.pause(); birthdayBgm.currentTime=0;
+  batmanBgm.play();
+
   score = 0;
   document.getElementById("score").innerText = score;
-
   clearInterval(gameInterval);
   gameInterval = setInterval(dropCheese, 800);
 }
@@ -93,67 +85,45 @@ function startGame() {
 // DROP CHEESE
 function dropCheese() {
   const gameArea = document.getElementById("gameArea");
-
   const cheese = document.createElement("div");
-  cheese.className = "cheese";
-  cheese.innerText = "🧀";
-
-  cheese.style.left =
-    Math.random() * (gameArea.clientWidth - 30) + "px";
-
-  cheese.onclick = () => {
+  cheese.className="cheese";
+  cheese.innerText="🧀";
+  cheese.style.left=Math.random()*(gameArea.clientWidth-30)+"px";
+  cheese.onclick = ()=>{
     score++;
-    document.getElementById("score").innerText = score;
+    document.getElementById("score").innerText=score;
     cheese.remove();
-
-    if (score >= 7) {
-      unlockSecret();
-    }
+    if(score>=7) unlockSecret();
   };
-
   gameArea.appendChild(cheese);
-
-  setTimeout(() => {
-    cheese.remove();
-  }, 4000);
+  setTimeout(()=>cheese.remove(),4000);
 }
 
 // SECRET UNLOCK
 function unlockSecret() {
   clearInterval(gameInterval);
+  batmanBgm.pause(); batmanBgm.currentTime=0;
+  meowSfx.play();
 
   const secret = document.getElementById("secret");
   secret.classList.add("show-secret");
 
-  confetti({
-    particleCount: 250,
-    spread: 140,
-    origin: { y: 0.6 }
-  });
-
-  setTimeout(() => {
-    confetti({
-      particleCount: 180,
-      spread: 160,
-      origin: { y: 0.3 }
-    });
-  }, 700);
+  confetti({ particleCount: 250, spread: 140, origin:{y:0.6} });
+  setTimeout(()=>{ confetti({ particleCount: 180, spread: 160, origin:{y:0.3} }); },700);
 }
 
-// CERTIFICATE DOWNLOAD
+// CERTIFICATE
 function showCertificate() {
-  confetti({ particleCount: 300, spread: 160 });
-
-  setTimeout(() => {
-    const link = document.createElement("a");
-    link.href = "certificate.png";
-    link.download = "Mozarella_Master_Certificate.png";
+  confetti({ particleCount:300, spread:160 });
+  setTimeout(()=>{
+    const link=document.createElement("a");
+    link.href="certificate.png";
+    link.download="Mozarella_Master_Certificate.png";
     link.click();
-  }, 2000);
+  },2000);
 }
 
 // CLOSE SECRET
 function closeSecret() {
-  document.getElementById("secret")
-    .classList.remove("show-secret");
+  document.getElementById("secret").classList.remove("show-secret");
 }
