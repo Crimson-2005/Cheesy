@@ -130,7 +130,7 @@ p { font-size: 1.2rem; line-height: 1.6; }
 #thinkingCard {
   opacity: 0;
   transform: scale(0.95);
-  transition: 1s ease;
+  transition: 0.6s ease;
   margin-top: 20px;
 }
 
@@ -139,22 +139,6 @@ p { font-size: 1.2rem; line-height: 1.6; }
   transform: scale(1);
 }
 
-#thinkingCard h2 {
-  color: #FFD60A;
-  text-shadow: 0 0 10px #FFC300, 0 0 25px #FFD60A;
-}
-
-#thinkingCard p {
-  color: #FFD60A;
-  font-size: 1.2rem;
-  margin-bottom: 10px;
-}
-
-#thinkingCard img {
-  border-radius: 12px;
-  margin-bottom: 10px;
-  box-shadow: 0 0 15px #FFD60A;
-}
 
 /* GAME */
 #gameArea {
@@ -199,6 +183,7 @@ p { font-size: 1.2rem; line-height: 1.6; }
 @keyframes secretPop { 0%{transform:scale(.2) rotate(-10deg);} 60%{transform:scale(1.1) rotate(5deg);} 100%{transform:scale(1);} }
 .secret h1 { color:#FFD60A; text-shadow:0 0 12px #FFC300,0 0 35px #FFD60A; }
 .secret p { max-width:700px; font-size:1.4rem; }
+
 
 
 
