@@ -1,4 +1,9 @@
-// INTRO COUNTDOWN
+// ==================== AUDIO ====================
+const birthdayBgm = document.getElementById("birthdayBgm");
+const batmanBgm = document.getElementById("batmanBgm");
+const meowSfx = document.getElementById("meowSfx");
+
+// ==================== INTRO COUNTDOWN ====================
 let time = 5;
 let timerEl = document.getElementById("intro-timer");
 let revealBtn = document.getElementById("revealBtn");
@@ -13,7 +18,7 @@ let timer = setInterval(() => {
   }
 }, 1000);
 
-// FIRST SURPRISE
+// ==================== FIRST SURPRISE ====================
 function revealSurprise() {
   document.getElementById("loading").style.display = "none";
 
@@ -22,39 +27,19 @@ function revealSurprise() {
   setTimeout(() => main.classList.add("show"), 100);
 
   spawnBats();
-  fadeInBirthdayMusic();
+
+  // Play birthday music (user has clicked the button)
+  birthdayBgm.volume = 0.3;
+  birthdayBgm.currentTime = 0;
+  birthdayBgm.play();
 }
 
-// FADE-IN BIRTHDAY MUSIC
-function fadeInBirthdayMusic() {
-  const music = document.getElementById("birthdayBgm");
-  music.volume = 0;
-  music.play();
-
-  let v = 0;
-  let fade = setInterval(() => {
-    if (v < 0.4) {
-      v += 0.01;
-      music.volume = v;
-    } else {
-      clearInterval(fade);
-    }
-  }, 150);
-}
-
-// SECOND SURPRISE (GAME)
+// ==================== SECOND SURPRISE (GAME) ====================
 function showCheesySurprise() {
   document.getElementById("gameContainer").classList.remove("hidden");
-
-  // Stop birthday music and start Batman music
-  const birthday = document.getElementById("birthdayBgm");
-  const batman = document.getElementById("batmanBgm");
-  birthday.pause();
-  batman.currentTime = 0;
-  batman.play();
 }
 
-// BATS ANIMATION
+// ==================== BATS ANIMATION ====================
 function spawnBats() {
   const container = document.getElementById("bats");
 
@@ -85,19 +70,26 @@ function spawnBats() {
   }
 }
 
-// GAME LOGIC
+// ==================== GAME LOGIC ====================
 let score = 0;
 let gameInterval;
 
+// Start game & switch music to Batman theme
 function startGame() {
   score = 0;
   document.getElementById("score").innerText = score;
 
   clearInterval(gameInterval);
   gameInterval = setInterval(dropCheese, 800);
+
+  // Stop birthday music & start Batman theme
+  birthdayBgm.pause();
+  batmanBgm.currentTime = 0;
+  batmanBgm.volume = 0.3;
+  batmanBgm.play();
 }
 
-// DROP CHEESE
+// ==================== DROP CHEESE ====================
 function dropCheese() {
   const gameArea = document.getElementById("gameArea");
 
@@ -105,56 +97,47 @@ function dropCheese() {
   cheese.className = "cheese";
   cheese.innerText = "🧀";
 
-  cheese.style.left =
-    Math.random() * (gameArea.clientWidth - 30) + "px";
+  cheese.style.left = Math.random() * (gameArea.clientWidth - 30) + "px";
 
   cheese.onclick = () => {
     score++;
     document.getElementById("score").innerText = score;
     cheese.remove();
 
-    if (score >= 7) {  // Secret unlock at 7 cheeses
+    // Adjust this number if you want easier/harder
+    if (score >= 5) {
       unlockSecret();
     }
   };
 
   gameArea.appendChild(cheese);
 
+  // Remove cheese if not clicked
   setTimeout(() => {
     cheese.remove();
   }, 4000);
 }
 
-// SECRET UNLOCK
+// ==================== SECRET UNLOCK ====================
 function unlockSecret() {
   clearInterval(gameInterval);
+
+  // Stop Batman music & play Meow once
+  batmanBgm.pause();
+  meowSfx.currentTime = 0;
+  meowSfx.play();
 
   const secret = document.getElementById("secret");
   secret.classList.add("show-secret");
 
-  // Stop Batman music and play Meow once
-  const batman = document.getElementById("batmanBgm");
-  const meow = document.getElementById("meowSfx");
-  batman.pause();
-  meow.currentTime = 0;
-  meow.play();
-
-  confetti({
-    particleCount: 250,
-    spread: 140,
-    origin: { y: 0.6 }
-  });
-
+  // Confetti
+  confetti({ particleCount: 250, spread: 140, origin: { y: 0.6 } });
   setTimeout(() => {
-    confetti({
-      particleCount: 180,
-      spread: 160,
-      origin: { y: 0.3 }
-    });
+    confetti({ particleCount: 180, spread: 160, origin: { y: 0.3 } });
   }, 700);
 }
 
-// CERTIFICATE DOWNLOAD
+// ==================== CERTIFICATE DOWNLOAD ====================
 function showCertificate() {
   confetti({ particleCount: 300, spread: 160 });
 
@@ -166,8 +149,7 @@ function showCertificate() {
   }, 2000);
 }
 
-// CLOSE SECRET
+// ==================== CLOSE SECRET ====================
 function closeSecret() {
-  document.getElementById("secret")
-    .classList.remove("show-secret");
+  document.getElementById("secret").classList.remove("show-secret");
 }
