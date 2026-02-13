@@ -18,7 +18,7 @@ let timer = setInterval(() => {
   }
 }, 1000);
 
-// FIRST SURPRISE
+// ==================== FIRST SURPRISE ====================
 function revealSurprise() {
   document.getElementById("loading").style.display = "none";
 
@@ -27,14 +27,11 @@ function revealSurprise() {
   setTimeout(() => main.classList.add("show"), 100);
 
   spawnBats();
-  fadeInMusic();
 
-  // Show thinking card after a short delay
-  setTimeout(() => {
-    const thinkingCard = document.getElementById("thinkingCard");
-    thinkingCard.classList.remove("hidden");
-    setTimeout(() => thinkingCard.classList.add("show"), 50);
-  }, 1500); // 1.5s after the main card appears
+  // Play birthday music (user has clicked the button)
+  birthdayBgm.volume = 0.3;
+  birthdayBgm.currentTime = 0;
+  birthdayBgm.play();
 }
 
 // ==================== SECOND SURPRISE (GAME) ====================
@@ -156,6 +153,3 @@ function showCertificate() {
 function closeSecret() {
   document.getElementById("secret").classList.remove("show-secret");
 }
-
-
-
