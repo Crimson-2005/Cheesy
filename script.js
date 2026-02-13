@@ -33,6 +33,7 @@ function showCheesySurprise() {
 // BATS ANIMATION
 function spawnBats() {
   const container = document.getElementById("bats");
+
   for (let i = 0; i < 10; i++) {
     let bat = document.createElement("div");
     bat.className = "bat";
@@ -46,12 +47,16 @@ function spawnBats() {
     function move() {
       x += sx;
       y += sy;
+
       if (x < 0 || x > innerWidth) sx *= -1;
       if (y < 0 || y > innerHeight) sy *= -1;
+
       bat.style.left = x + "px";
       bat.style.top = y + "px";
+
       requestAnimationFrame(move);
     }
+
     move();
   }
 }
@@ -67,80 +72,78 @@ function fadeInMusic() {
     if (v < 0.4) {
       v += 0.01;
       music.volume = v;
-    } else clearInterval(fade);
+    } else {
+      clearInterval(fade);
+    }
   }, 150);
 }
 
 // GAME LOGIC
 let score = 0;
 let gameInterval;
-let timerInterval;
-let timeLeft = 20;
 
 function startGame() {
   score = 0;
-  timeLeft = 20;
-
   document.getElementById("score").innerText = score;
-  document.getElementById("gameTimer").innerText = timeLeft;
 
   clearInterval(gameInterval);
-  clearInterval(timerInterval);
-
   gameInterval = setInterval(dropCheese, 800);
-
-  timerInterval = setInterval(() => {
-    timeLeft--;
-    document.getElementById("gameTimer").innerText = timeLeft;
-    if (timeLeft <= 0) endGame();
-  }, 1000);
-}
-
-function endGame() {
-  clearInterval(gameInterval);
-  clearInterval(timerInterval);
-  alert("Game Over! You collected " + score + " cheese 🧀");
 }
 
 // DROP CHEESE
 function dropCheese() {
   const gameArea = document.getElementById("gameArea");
+
   const cheese = document.createElement("div");
   cheese.className = "cheese";
   cheese.innerText = "🧀";
 
-  cheese.style.left = Math.random() * (gameArea.clientWidth - 30) + "px";
+  cheese.style.left =
+    Math.random() * (gameArea.clientWidth - 30) + "px";
 
   cheese.onclick = () => {
     score++;
     document.getElementById("score").innerText = score;
     cheese.remove();
 
-    if (score === 10) unlockSecret();
+    if (score >= 7) {
+      unlockSecret();
+    }
   };
 
   gameArea.appendChild(cheese);
-  setTimeout(() => cheese.remove(), 4000);
+
+  setTimeout(() => {
+    cheese.remove();
+  }, 4000);
 }
 
 // SECRET UNLOCK
 function unlockSecret() {
   clearInterval(gameInterval);
-  clearInterval(timerInterval);
 
   const secret = document.getElementById("secret");
   secret.classList.add("show-secret");
 
-  // CONFETTI PARTY POPPER 🎉
-  confetti({ particleCount: 250, spread: 140, origin: { y: 0.6 } });
+  confetti({
+    particleCount: 250,
+    spread: 140,
+    origin: { y: 0.6 }
+  });
+
   setTimeout(() => {
-    confetti({ particleCount: 180, spread: 160, origin: { y: 0.3 } });
+    confetti({
+      particleCount: 180,
+      spread: 160,
+      origin: { y: 0.3 }
+    });
   }, 700);
 }
 
+// CERTIFICATE DOWNLOAD
 function showCertificate() {
   confetti({ particleCount: 300, spread: 160 });
-  
+
   setTimeout(() => {
     const link = document.createElement("a");
     link.href = "certificate.png";
@@ -151,5 +154,6 @@ function showCertificate() {
 
 // CLOSE SECRET
 function closeSecret() {
-  document.getElementById("secret").classList.remove("show-secret");
+  document.getElementById("secret")
+    .classList.remove("show-secret");
 }
