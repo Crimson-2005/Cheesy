@@ -37,9 +37,7 @@ function revealSurprise() {
 // ==================== SECOND SURPRISE ====================
 function showCheesySurprise() {
   document.getElementById("gameContainer").classList.remove("hidden");
-  startGame(); // 🚀 Auto start game
 }
-
 // ==================== BATS ====================
 function spawnBats() {
   const container = document.getElementById("bats");
@@ -169,3 +167,4 @@ function closeSecret() {
     .getElementById("secret")
     .classList.remove("show-secret");
 }
+
