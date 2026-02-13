@@ -35,7 +35,10 @@ body::before {
   pointer-events:none;
 }
 
-@keyframes twinkle { from{opacity:.3;} to{opacity:1;} }
+@keyframes twinkle {
+  from{opacity:.3;}
+  to{opacity:1;}
+}
 
 /* LOADING SCREEN */
 #loading {
@@ -79,17 +82,36 @@ body::before {
   animation:pulseTimer 1s infinite;
 }
 
-@keyframes pulseTimer { 0%{transform:scale(1);} 50%{transform:scale(1.2);} 100%{transform:scale(1);} }
+@keyframes pulseTimer {
+  0%{transform:scale(1);}
+  50%{transform:scale(1.2);}
+  100%{transform:scale(1);}
+}
 
 .hidden { display:none; }
 
 /* MAIN TRANSITION */
-#main { opacity:0; transform:scale(0.95); transition:1.5s ease; }
-#main.show { opacity:1; transform:scale(1); }
+#main {
+  opacity:0;
+  transform:scale(0.95);
+  transition:1.5s ease;
+}
+#main.show {
+  opacity:1;
+  transform:scale(1);
+}
 
 /* HEADINGS */
-h1 { font-size:3rem; color:#FFD60A; text-shadow:0 0 12px #FFC300,0 0 40px #FFD60A; }
-h2 { color:#FFC300; text-shadow:0 0 10px #FFD60A; }
+h1 {
+  font-size:3rem;
+  color:#FFD60A;
+  text-shadow:0 0 12px #FFC300,0 0 40px #FFD60A;
+}
+
+h2 {
+  color:#FFC300;
+  text-shadow:0 0 10px #FFD60A;
+}
 
 /* NEON BUTTON */
 button {
@@ -114,19 +136,20 @@ button:hover {
 
 /* BATS */
 #bats { position:fixed; inset:0; pointer-events:none; }
+
 .bat {
   width:60px;
   height:30px;
   background:white;
   clip-path:polygon(50% 0%,60% 20%,80% 10%,100% 30%,80% 50%,60% 40%,50% 60%,40% 40%,20% 50%,0% 30%,20% 10%,40% 20%);
   position:absolute;
-  opacity:.6;
+  opacity:.7;
   animation:flap .6s infinite alternate;
 }
-@keyframes flap { from{transform:scaleX(1);} to{transform:scaleX(0.5);} }
+
+@keyframes flap { from{transform:scaleX(1);} to{transform:scaleX(.5);} }
 
 p { font-size: 1.2rem; line-height: 1.6; }
-
 
 /* GAME */
 #gameArea {
@@ -167,12 +190,18 @@ p { font-size: 1.2rem; line-height: 1.6; }
   z-index:9999;
   overflow-y:auto;
 }
-.secret.show-secret { opacity:1; pointer-events:auto; animation:secretPop 1s forwards; }
+
+.secret.show-secret {
+  opacity:1;
+  pointer-events:auto;
+  animation:secretPop 1s forwards;
+}
+
 @keyframes secretPop { 0%{transform:scale(.2) rotate(-10deg);} 60%{transform:scale(1.1) rotate(5deg);} 100%{transform:scale(1);} }
-.secret h1 { color:#FFD60A; text-shadow:0 0 12px #FFC300,0 0 35px #FFD60A; }
+
+.secret h1 {
+  color:#FFD60A;
+  text-shadow:0 0 12px #FFC300,0 0 35px #FFD60A;
+}
+
 .secret p { max-width:700px; font-size:1.4rem; }
-
-
-
-
-
