@@ -111,7 +111,7 @@ function dropCheese() {
     document.getElementById("score").innerText = score;
     cheese.remove();
 
-    if (score >= 5) {
+    if (score >= 7) {
       unlockSecret();
     }
   };
@@ -167,4 +167,5 @@ function closeSecret() {
     .getElementById("secret")
     .classList.remove("show-secret");
 }
+
 
