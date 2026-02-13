@@ -127,18 +127,6 @@ button:hover {
 
 p { font-size: 1.2rem; line-height: 1.6; }
 
-#thinkingCard {
-  opacity: 0;
-  transform: scale(0.95);
-  transition: 0.6s ease;
-  margin-top: 20px;
-}
-
-#thinkingCard.show {
-  opacity: 1;
-  transform: scale(1);
-}
-
 
 /* GAME */
 #gameArea {
@@ -183,6 +171,7 @@ p { font-size: 1.2rem; line-height: 1.6; }
 @keyframes secretPop { 0%{transform:scale(.2) rotate(-10deg);} 60%{transform:scale(1.1) rotate(5deg);} 100%{transform:scale(1);} }
 .secret h1 { color:#FFD60A; text-shadow:0 0 12px #FFC300,0 0 35px #FFD60A; }
 .secret p { max-width:700px; font-size:1.4rem; }
+
 
 
 
