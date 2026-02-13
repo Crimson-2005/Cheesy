@@ -117,7 +117,7 @@ button:hover {
 .bat {
   width:40px;
   height:20px;
-  background:#FFC300;
+  background:white;
   clip-path:polygon(50% 0%,60% 20%,80% 10%,100% 30%,80% 50%,60% 40%,50% 60%,40% 40%,20% 50%,0% 30%,20% 10%,40% 20%);
   position:absolute;
   opacity:.6;
@@ -170,3 +170,4 @@ p { font-size: 1.2rem; line-height: 1.6; }
 @keyframes secretPop { 0%{transform:scale(.2) rotate(-10deg);} 60%{transform:scale(1.1) rotate(5deg);} 100%{transform:scale(1);} }
 .secret h1 { color:#FFD60A; text-shadow:0 0 12px #FFC300,0 0 35px #FFD60A; }
 .secret p { max-width:700px; font-size:1.4rem; }
+
