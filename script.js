@@ -73,44 +73,6 @@ function spawnBats() {
   }
 }
 
-// ==================== THINKING CARD ====================
-function revealSurprise() {
-  document.getElementById("loading").style.display = "none";
-
-  const main = document.getElementById("main");
-  main.classList.remove("hidden");
-  setTimeout(() => main.classList.add("show"), 100);
-
-  spawnBats();
-  fadeInMusic();
-
-  // Hide main "surprise button" initially
-  const mainSurpriseBtn = main.querySelector('button');
-  mainSurpriseBtn.style.display = "none";
-
-  // Show thinking card after 1.5s
-  setTimeout(() => {
-    const thinkingCard = document.getElementById("thinkingCard");
-    thinkingCard.classList.remove("hidden");
-    setTimeout(() => thinkingCard.classList.add("show"), 50);
-  }, 1500);
-}
-
-// Handle thinking card button
-const thinkingBtn = document.getElementById("thinkingBtn");
-thinkingBtn.addEventListener("click", () => {
-  const thinkingCard = document.getElementById("thinkingCard");
-  thinkingCard.classList.remove("show");
-
-  setTimeout(() => {
-    thinkingCard.classList.add("hidden");
-    // Show game button now
-    const main = document.getElementById("main");
-    const mainSurpriseBtn = main.querySelector('button');
-    mainSurpriseBtn.style.display = "inline-block";
-  }, 500);
-});
-
 // ==================== GAME LOGIC ====================
 let score = 0;
 let gameInterval;
@@ -194,5 +156,6 @@ function showCertificate() {
 function closeSecret() {
   document.getElementById("secret").classList.remove("show-secret");
 }
+
 
 
