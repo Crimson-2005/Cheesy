@@ -3,10 +3,10 @@ body {
   margin: 0;
   font-family: Arial;
   text-align: center;
-  color: white;
+  color: #FFD60A;
   overflow-y: auto;
   overflow-x: hidden;
-  background: linear-gradient(120deg,#050015,#12002b,#1b0038,#050015);
+  background: linear-gradient(120deg,#000814,#001D3D,#003566,#000814);
   background-size: 400% 400%;
   animation: gradientMove 40s infinite;
 }
@@ -23,9 +23,14 @@ body::before {
   position:fixed;
   inset:0;
   box-shadow:
-    50px 100px white,150px 200px white,300px 50px white,
-    400px 300px white,600px 200px white,700px 400px white,
-    900px 100px white,1100px 300px white;
+    50px 100px #FFD60A,
+    150px 200px #FFC300,
+    300px 50px #FFD60A,
+    400px 300px #FFC300,
+    600px 200px #FFD60A,
+    700px 400px #FFC300,
+    900px 100px #FFD60A,
+    1100px 300px #FFC300;
   animation:twinkle 3s infinite alternate;
   pointer-events:none;
 }
@@ -40,7 +45,7 @@ body::before {
   position: fixed;
   width: 100%;
   height: 100vh;
-  background: linear-gradient(135deg, #050015, #12002b, #1b0038);
+  background: linear-gradient(135deg, #000814, #001D3D, #003566);
   background-size: 400% 400%;
   animation: introGradient 20s ease infinite;
   display: flex;
@@ -48,7 +53,7 @@ body::before {
   justify-content: center;
   align-items: center;
   z-index: 9999;
-  color: white;
+  color: #FFD60A;
 }
 
 @keyframes introGradient {
@@ -59,18 +64,22 @@ body::before {
 
 #loading h1 {
   font-size: 3rem;
-  color:#fdff00;
-text-shadow:0 0 10px #fff176, 0 0 30px #ffeb3b;
+  color:#FFD60A;
+  text-shadow:0 0 12px #FFC300, 0 0 40px #FFD60A;
   animation: glowPulse 2s infinite alternate;
 }
 
+@keyframes glowPulse {
+  from { text-shadow:0 0 10px #FFC300, 0 0 30px #FFD60A; }
+  to { text-shadow:0 0 20px #FFC300, 0 0 60px #FFD60A; }
+}
 
 /* COUNTDOWN STYLE */
 #intro-timer {
   font-size:5rem;
   font-weight:bold;
-  color:#fdff00;
-  text-shadow:0 0 10px #ff6600, 0 0 30px #ff0000;
+  color:#FFD60A;
+  text-shadow:0 0 12px #FFC300, 0 0 40px #FFD60A;
   animation:pulseTimer 1s infinite;
 }
 
@@ -96,42 +105,47 @@ text-shadow:0 0 10px #fff176, 0 0 30px #ffeb3b;
 /* HEADINGS */
 h1 {
   font-size:3rem;
-  color:#00fff7;
-  text-shadow:0 0 10px #00fff7,0 0 40px #00b3ff;
+  color:#FFD60A;
+  text-shadow:0 0 12px #FFC300,0 0 40px #FFD60A;
 }
 
 h2 {
-  color:gold;
-  text-shadow:0 0 10px gold;
+  color:#FFC300;
+  text-shadow:0 0 10px #FFD60A;
 }
 
 /* NEON BUTTON */
 button {
   padding:14px 30px;
   font-size:18px;
-  background:black;
-  color:#00fff7;
-  border:2px solid #00fff7;
+  background:#000814;
+  color:#FFD60A;
+  border:2px solid #FFC300;
   border-radius:12px;
-  box-shadow:0 0 10px #00fff7;
+  box-shadow:0 0 10px #FFC300;
   cursor:pointer;
   margin:10px;
   transition:.3s;
 }
+
 button:hover {
-  background:#00fff7;
-  color:black;
-  box-shadow:0 0 25px #00fff7,0 0 50px #00b3ff;
+  background:#FFD60A;
+  color:#000814;
+  box-shadow:0 0 25px #FFC300,0 0 50px #FFD60A;
   transform:scale(1.1);
 }
 
 /* BATS */
-#bats { position:fixed; inset:0; pointer-events:none; }
+#bats { 
+  position:fixed; 
+  inset:0; 
+  pointer-events:none; 
+}
 
 .bat {
   width:40px;
   height:20px;
-  background:white;
+  background:#FFC300;
   clip-path:polygon(50% 0%,60% 20%,80% 10%,100% 30%,80% 50%,60% 40%,50% 60%,40% 40%,20% 50%,0% 30%,20% 10%,40% 20%);
   position:absolute;
   opacity:.6;
@@ -152,7 +166,7 @@ p {
 #gameArea {
   width:90%;
   height:300px;
-  border:2px dashed gold;
+  border:2px dashed #FFC300;
   margin:auto;
   border-radius:20px;
   position:relative;
@@ -174,8 +188,8 @@ p {
 /* TIMER */
 #timerBox {
   font-size:22px;
-  color:#00ffea;
-  text-shadow:0 0 10px #00ffea;
+  color:#FFD60A;
+  text-shadow:0 0 10px #FFC300;
   font-weight:bold;
   margin:10px;
 }
@@ -184,14 +198,14 @@ p {
 .secret {
   position:fixed;
   inset:0;
-  background:radial-gradient(circle,#1a002b,#000);
+  background:radial-gradient(circle,#001D3D,#000814);
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
   text-align:center;
   font-size:1.6rem;
-  color:#00ffea;
+  color:#FFD60A;
   font-family:"Comic Sans MS",cursive;
   opacity:0;
   pointer-events:none;
@@ -213,12 +227,11 @@ p {
 }
 
 .secret h1 {
-  color:gold;
-  text-shadow:0 0 10px gold,0 0 30px yellow;
+  color:#FFD60A;
+  text-shadow:0 0 12px #FFC300,0 0 35px #FFD60A;
 }
 
 .secret p {
   max-width:700px;
   font-size:1.4rem;
 }
-
