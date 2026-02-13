@@ -9,7 +9,7 @@
 
 </head>
 
-<body>
+<body onload="document.getElementById('birthdayBgm').play()">
 
 <!-- BACKGROUND MUSIC -->
 <audio id="birthdayBgm" loop>
@@ -38,43 +38,32 @@
 <div id="main" class="hidden">
   <h1>Happy Birthday, Mozarella Cheese!!! 🧀</h1> 
   <p>
-Happy Birthday, Aman!! 🥳🥳<br><br>
-
-Log bolte hain superheroes ke paas alag alag superpowers hote hain…<br>
-🕷️ Spider-Man ke paas uska spider-sense hai.<br>
-🤖 Iron Man ke paas high-tech suit hai.<br>
-🦇 Batman ke strategy, planning aur dramatic entry skills hi kaafi hain.<br><br>
-
-Lekin…<br>
-Tumhaara superpower thoda alag hai.<br>
-Tum sirf baat karte ho…<br>
-Aur log paagal ho jaate hain. 😭<br>
-But usmee hi toh maza heiii yrrrrr..<br><br>
-
-Isiliye socha ki kuch khaas kiya jaaye aapke liye..<br>
-Lekin, hotwheels ka budget to mere paas nahi hai 🥲<br>
-Naa aapke liye main batman ko bula sakti hoon..<br>
-Magar aap jaise log ke efforts daalna toh justified hai..<br>
-Isliye aapko ek cheesy sa gift de rahi hoon.. 💛<br><br>
-
-Baaki... aise hi humesha haste rehna aur sabko hasaate rehnaa.<br>
-I hope you like ur gift :) <br>
-Enjoyy your dayy!!! 🧀<br><br>
-
-Waiseee, cheesy, apne bday pe cheesecake kaatega kya??
-</p>
-
-  <h2>Aapko kya laga?</h2>
-  <p>Itni jaldi wish khatam ho jaayegi meri? 🤔</p>
-  <img src="https://media.tenor.com/8erHwzR8pBIAAAAC/batman-hmmm.gif" alt="Batman Thinking" width="250">
-</div>
+  Happy Birthday, Aman !! 🥳🥳<br><br>
+  Log bolte hain superheroes ke paas alag alag superpowers hote hain…<br>
+  🕷️ Spider-Man ke paas uska spider-sense hai.<br>
+  🤖Iron Man ke paas high-tech suit hai.<br>
+  🦇 Batman ke strategy, planning aur dramatic entry skills hi kaafi hain.<br><br>
+  Lekin…<br>
+  Tumhaara superpower thoda alag hai.<br>
+  Tum sirf baat karte ho…<br>
+  Aur log paagal ho jaate hain. 😭<br>
+  But usmee hi toh maza heiii yrrrrr..<br><br>
+  Isiliye socha ki kuch khaas kiya jaaye aapke liye..<br>
+  Lekin, hotwheels ka budget to mere paas nahi hai,🥲<br>
+  Naa aapke liye main batman ko bula sakti hoon..<br>
+  Magar aap jaise log ke efforts daalna toh justified hai..<br>
+  Isliye aapko ek cheesy sa gift de rahi hoon.. 💛<br><br>
+  Baaki...aise hi humesha haste rehna aur sabko hasaate rehnaa.<br>
+  I hope you like ur gift :) <br>
+  Enjoyy your dayy!!! 🧀<br>
+  Waiseee cheesy apne bday pe cheesecake kaatega kya??   
+  </p>
 
   <button onclick="showCheesySurprise()">Click for another cheesy surprise 😈</button>
 
   <!-- GAME -->
   <div id="gameContainer" class="hidden">
     <h2>Catch The Cheese 🧀</h2>
-    <p> Ek specific number of cheese catch kro.. Ek aur surprise hei aapke liye.😉 </p>
     <p>Score: <span id="score">0</span></p>
     <button onclick="startGame()">Start Game</button>
     <div id="gameArea"></div>
